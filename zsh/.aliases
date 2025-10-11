@@ -1,0 +1,6 @@
+# Kill tmux sessions
+alias TKS="tmux kill-session"
+alias TKW="tmux kill-window"
+
+# OWASP ZAP
+alias zap="/Applications/OWASP\ ZAP.app/Contents/Java/zap.sh"
