@@ -14,7 +14,7 @@ PS1="${GREEN}[\t] [\u@\h \W]\$ ${CYAN}"
 # variables depending on the current directory.
 # This allows project-specific environment variables without cluttering the ~/.profile file.
 
-eval "$(direnv hook zsh)"
+#eval "$(direnv hook zsh)"
 
 # opam
 #test -r /Users/ccianos/.opam/opam-init/init.sh && . /Users/ccianos/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
