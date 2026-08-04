@@ -1,73 +1,69 @@
-"dein Scripts-----------------------------
-if &compatible
-  set nocompatible               " Be iMproved
-endif
+" Ward off unexpected things that your distro might have made, as
+" well as sanely reset options when re-sourcing .vimrc
+set nocompatible
 
-" Required:
-set runtimepath+=~/.vim/bundle/repos/github.com/Shougo/dein.vim
+" Set Dein base path (required)
+let s:dein_base = '~/.cache/dein/'
 
-" Required:
-if dein#load_state('$HOME/.vim/bundle')
-  call dein#begin('$HOME/.vim/bundle')
+" Set Dein source path (required)
+let s:dein_src = '~/.cache/dein/repos/github.com/Shougo/dein.vim'
 
-  " Let dein manage dein
-  " Required:
-  call dein#add('$HOME/.vim/bundle/repos/github.com/Shougo/dein.vim')
-"  call dein#add('Shougo/deoplete.nvim')
-"  if !has('nvim')
-"    call dein#add('roxma/nvim-yarp')
-"    call dein#add('roxma/vim-hug-neovim-rpc') " 
-"    " init deoplete
-"    let g:deoplete#enable_at_startup = 1
-"  endif
+" Set Dein runtime path (required)
+execute 'set runtimepath+=' .. s:dein_src
 
-  " Add or remove your plugins here:
-  call dein#add('Shougo/neosnippet.vim')
-  call dein#add('Shougo/neosnippet-snippets')
-  call dein#add('Shougo/vimshell')
-  call dein#add('preservim/nerdtree')
-  call dein#add('preservim/tagbar')
-  call dein#add('universal-ctags/ctags')
-  call dein#add('wsdjeg/dein-ui.vim')
-  call dein#add('altercation/vim-colors-solarized')
-  call dein#add('vim-airline/vim-airline')
-  call dein#add('vim-airline/vim-airline-themes')
-  call dein#add('vim-syntastic/syntastic')
-  call dein#add('Xuyuanp/nerdtree-git-plugin')
-  call dein#add('davidhalter/jedi-vim')
-  call dein#add('fatih/vim-go')
-  call dein#add('instant-markdown/vim-instant-markdown')
+" Call Dein initialization (required)
+call dein#begin(s:dein_base)
+
+call dein#add(s:dein_src)
+
+" Your plugins go here:
+call dein#add('Shougo/neosnippet.vim')
+call dein#add('Shougo/neosnippet-snippets')
+call dein#add('Shougo/vimshell')
+call dein#add('preservim/nerdtree')
+call dein#add('preservim/tagbar')
+call dein#add('universal-ctags/ctags')
+call dein#add('wsdjeg/dein-ui.vim')
+call dein#add('altercation/vim-colors-solarized')
+call dein#add('vim-airline/vim-airline')
+call dein#add('vim-airline/vim-airline-themes')
+call dein#add('vim-syntastic/syntastic')
+call dein#add('Xuyuanp/nerdtree-git-plugin')
+call dein#add('davidhalter/jedi-vim')
+call dein#add('fatih/vim-go')
+call dein#add('instant-markdown/vim-instant-markdown')
 "  call dein#add('rust-lang/rust.vim')
-  call dein#add('pearofducks/ansible-vim')
-  call dein#add('puppetlabs/puppet-syntax-vim')
-  call dein#add('justmao945/vim-clang')
-  call dein#add('WolfgangMehner/c-support')
-  call dein#add('godlygeek/tabular')
-  call dein#add('preservim/vim-markdown')
-  call dein#add('buoto/gotests-vim')
-  call dein#add('leafOfTree/vim-svelte-plugin')
-  call dein#add('mattn/emmet-vim')
-  call dein#add('pangloss/vim-javascript')
-  call dein#add('leafgarland/typescript-vim')
-  call dein#add('MaxMEllon/vim-jsx-pretty')
-  call dein#add('neoclide/coc.nvim', { 'merged': 0, 'rev': 'master', 'build': 'npm ci' })
-  " You can specify revision/branch/tag.
+call dein#add('pearofducks/ansible-vim')
+call dein#add('puppetlabs/puppet-syntax-vim')
+call dein#add('justmao945/vim-clang')
+call dein#add('WolfgangMehner/c-support')
+call dein#add('godlygeek/tabular')
+call dein#add('preservim/vim-markdown')
+call dein#add('buoto/gotests-vim')
+call dein#add('leafOfTree/vim-svelte-plugin')
+call dein#add('mattn/emmet-vim')
+call dein#add('pangloss/vim-javascript')
+call dein#add('leafgarland/typescript-vim')
+call dein#add('MaxMEllon/vim-jsx-pretty')
+" call dein#add('neoclide/coc.nvim', { 'merged': 0, 'rev': 'master', 'build': 'npm ci' })
+" You can specify revision/branch/tag.
 
-  " Required:
-  call dein#end()
-  call dein#save_state()
-endif
+" Finish Dein initialization (required)
+call dein#end()
 
-" If you want to install not installed plugins on startup.
+" Uncomment if you want to install not-installed plugins on startup.
 if dein#check_install()
   call dein#install()
 endif
 
-"End dein Scripts-------------------------
+" Attempt to determine the type of a file based on its name and possibly its
+" contents. Use this to allow intelligent auto-indenting for each filetype,
+" and for plugins that are filetype specific.
+filetype indent plugin on
 
+" Enable syntax highlighting
+syntax enable
 
-" Required:
-filetype plugin indent on
 set tabstop=4
 set shiftwidth=4
 set expandtab
@@ -78,8 +74,6 @@ set background=dark
 let g:solarized_termcolors=256
 
 colorscheme vividchalk
-
-
 
 " Don't reset on sourcing rc file.
 if has('vim_starting')
