@@ -2,5 +2,8 @@
 alias TKS="tmux kill-session"
 alias TKW="tmux kill-window"
 
+# vi
+alias vim="vi"
+
 # OWASP ZAP
 alias zap="/Applications/OWASP\ ZAP.app/Contents/Java/zap.sh"

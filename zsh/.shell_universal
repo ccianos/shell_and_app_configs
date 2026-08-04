@@ -1,4 +1,7 @@
-fortune
+if [ -z "$TMUX" ]; then
+    command cowsay $(fortune)
+    return
+fi
 
 # color options
 alias ls="ls -G"
