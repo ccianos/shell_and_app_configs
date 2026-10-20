@@ -1,0 +1,34 @@
+---
+# --------------------------------------------------------------------------------
+# 0. SETUP
+# --------------------------------------------------------------------------------
+
+- name: Provision Pop_OS! Workstations
+  hosts: workstations
+  gather_facts: true
+
+  vars:
+    user_name: "ccianos"
+    user_home: "/home/{{ user_name }}"
+    repo_src: "{{ playbook_dir }}"
+
+    required_packages:
+      - zsh
+      - vim
+      - tmux
+      - initramfs-tools
+
+  handlers:
+    - name: Reload sysctl
+      ansible.builtin.command:
+        cmd: sysctl --system
+      listen: "trigger sysctl reload"
+
+    - name: Update initramfs
+      ansible.builtin.command:
+        cmd: update-initramfs -u
+      listen: "trigger initramfs update"
+
+# --------------------------------------------------------------------------------
+# 1. SYS PKGS & CONFIGS
+# --------------------------------------------------------------------------------
