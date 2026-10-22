@@ -66,4 +66,13 @@
   # --------------------------------------------------------------------------------
   # 2. USER ENV & DIR STRUCT
   # --------------------------------------------------------------------------------
-
+  - name: Ensure target directories exist
+    ansible.builtin.file:
+      path: "{{ item }}"
+      state: directory
+      owner: "{{ user_name }}"
+      group: "{{ user_name }}"
+      mode: 0755
+    loop:
+      - "{{ user_home }}/bin"
+      - "{{ user_home }}/.vim/colors"
