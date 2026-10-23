@@ -30,49 +30,49 @@
       listen: "trigger initramfs update"
 
   tasks:
-  # --------------------------------------------------------------------------------
-  # 1. SYS PKGS & CONFIGS
-  # --------------------------------------------------------------------------------
-  - name: Ensure required packages are installed
-    ansible.builtin.apt:
-      name: "{{ required_packages }}"
-      state: present
-      update_cache: true
-      cache_valid_time: 3600
-    become: true
+    # --------------------------------------------------------------------------------
+    # 1. SYS PKGS & CONFIGS
+    # --------------------------------------------------------------------------------
+    - name: Ensure required packages are installed
+      ansible.builtin.apt:
+        name: "{{ required_packages }}"
+        state: present
+        update_cache: true
+        cache_valid_time: 3600
+      become: true
 
-  - name: Configure kernel system variables
-    ansible.builtin.copy:
-      src: "{{ repo_src }}/sysctl/sysctl.conf"
-      dest: /etc/sysctl.conf
-      owner: root
-      group: root
-      mode: 0644
-      backup: true
-    become: true
-    notify: "trigger sysctl reload"
+    - name: Configure kernel system variables
+      ansible.builtin.copy:
+        src: "{{ repo_src }}/sysctl/sysctl.conf"
+        dest: /etc/sysctl.conf
+        owner: root
+        group: root
+        mode: 0644
+        backup: true
+      become: true
+      notify: "trigger sysctl reload"
 
-  - name: Configure initramfs settings
-    ansible.builtin.copy:
-      src: "{{ repo_src }}/initramfs-tools/initramfs.conf"
-      dest: /etc/initramfs-tools/initramfs.conf
-      owner: root
-      group: root
-      mode: 0644
-      backup: true
-    become: true
-    notify: "trigger initramfs update"
+    - name: Configure initramfs settings
+      ansible.builtin.copy:
+        src: "{{ repo_src }}/initramfs-tools/initramfs.conf"
+        dest: /etc/initramfs-tools/initramfs.conf
+        owner: root
+        group: root
+        mode: 0644
+        backup: true
+      become: true
+      notify: "trigger initramfs update"
 
-  # --------------------------------------------------------------------------------
-  # 2. USER ENV & DIR STRUCT
-  # --------------------------------------------------------------------------------
-  - name: Ensure target directories exist
-    ansible.builtin.file:
-      path: "{{ item }}"
-      state: directory
-      owner: "{{ user_name }}"
-      group: "{{ user_name }}"
-      mode: 0755
-    loop:
-      - "{{ user_home }}/bin"
-      - "{{ user_home }}/.vim/colors"
+    # --------------------------------------------------------------------------------
+    # 2. USER ENV & DIR STRUCT
+    # --------------------------------------------------------------------------------
+    - name: Ensure target directories exist
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: "{{ user_name }}"
+        group: "{{ user_name }}"
+        mode: 0755
+      loop:
+        - "{{ user_home }}/bin"
+        - "{{ user_home }}/.vim/colors"
