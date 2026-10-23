@@ -76,3 +76,12 @@
       loop:
         - "{{ user_home }}/bin"
         - "{{ user_home }}/.vim/colors"
+
+    # --------------------------------------------------------------------------------
+    # 2. SHELL CONFIGS
+    # --------------------------------------------------------------------------------
+    - name: Set Zsh as default shell 
+      ansible.builtin.user:
+        name: "{{ user_name }}"
+        shell: /bin/zsh
+      become: true
