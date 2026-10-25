@@ -2,7 +2,6 @@
 # --------------------------------------------------------------------------------
 # 0. SETUP
 # --------------------------------------------------------------------------------
-
 - name: Provision Pop_OS! Workstations
   hosts: workstations
   gather_facts: true
@@ -80,6 +79,19 @@
     # --------------------------------------------------------------------------------
     # 3. SHELL CONFIGS
     # --------------------------------------------------------------------------------
+    - name: Deploy Zsh config files
+      ansible.builtin.copy:
+        src: "{{ repo_src }}/zsh/{{ item.src }}"
+        dest: "{{ user_home }}/{{ item.dest }}"
+        owner: "{{ user_name }}"
+        group: "{{ user_name }}"
+        mode: 0644
+      loop:
+        - { src: '.zshrc', dest: '.zshrc' }
+        - { src: '.aliases', dest: '.aliases' }
+        - { src: '.exports', dest: '.exports' }
+        - { src: '.shell_universal', dest: '.shell_universal' }
+
     - name: Set Zsh as default shell 
       ansible.builtin.user:
         name: "{{ user_name }}"
