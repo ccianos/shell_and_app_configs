@@ -86,6 +86,7 @@
         owner: "{{ user_name }}"
         group: "{{ user_name }}"
         mode: 0644
+        backup: true
       loop:
         - { src: '.zshrc', dest: '.zshrc' }
         - { src: '.aliases', dest: '.aliases' }
@@ -96,4 +97,18 @@
       ansible.builtin.user:
         name: "{{ user_name }}"
         shell: /bin/zsh
-      become: true
+ 
+    # --------------------------------------------------------------------------------
+    # 4. VIM CONFIGS
+    # --------------------------------------------------------------------------------
+    - name: Deploy Vim config files
+      ansible.builtin.copy:
+        src: "{{ repo_src }}/vim/{{ item.src }}"
+        dest: "{{ user_home }}/{{ item.dest }}"
+        owner: "{{ user_name }}"
+        group: "{{ user_name }}"
+        mode: 0644
+        backup: true
+      loop:
+        - { src: '.vimrc', dest: '.vimrc' }
+        - { src: 'colors/vividchalk.vim', dest: '.vim/colors/vividchalk.vim' }
