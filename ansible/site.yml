@@ -112,3 +112,15 @@
       loop:
         - { src: '.vimrc', dest: '.vimrc' }
         - { src: 'colors/vividchalk.vim', dest: '.vim/colors/vividchalk.vim' }
+
+    # --------------------------------------------------------------------------------
+    # 5. TMUX CONFIGS & CUSTOM BINARIES
+    # --------------------------------------------------------------------------------
+    - name: Deploy Tmux config
+      ansible.builtin.copy:
+        src: "{{ repo_src }}/tmux/.tmux.conf"
+        dest: "{{ user_home }}/.tmux.conf"
+        owner: "{{ user_name }}"
+        group: "{{ user_name }}"
+        mode: 0644
+        backup: true
