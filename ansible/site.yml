@@ -124,3 +124,15 @@
         group: "{{ user_name }}"
         mode: 0644
         backup: true
+
+    - name: Deploy custom executables to ~/bin
+      ansible.builtin.copy:
+        src: "{{ repo_src }}/tmux/{{ item.src }}"
+        dest: "{{ user_home }}/bin/{{ item.dest }}"
+        owner: "{{ user_name }}"
+        group: "{{ user_name }}"
+        mode: 0755
+        backup: true
+      loop:
+        - { src: 'alphamux.sh', dest: 'alphamux.sh' }
+        - { src: 'winmux.sh', dest: 'winmux.sh'' }
