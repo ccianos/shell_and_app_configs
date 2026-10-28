@@ -135,4 +135,15 @@
         backup: true
       loop:
         - { src: 'alphamux.sh', dest: 'alphamux.sh' }
-        - { src: 'winmux.sh', dest: 'winmux.sh'' }
+        - { src: 'winmux.sh', dest: 'winmux.sh' }
+
+    # --------------------------------------------------------------------------------
+    # 5. APP CONFIGS
+    # --------------------------------------------------------------------------------
+    - name: Deploy AntiMicroX controller profile
+        src: "{{ repo_src }}/antimicrox/xbox_cntrl_config.gamecontroller.amgp"
+        dest: "{{ user_home }}/xbox_cntrl_config.gamecontroller.amgp"
+        owner: "{{ user_name }}"
+        group: "{{ user_name }}"
+        mode: 0644
+        backup: true
