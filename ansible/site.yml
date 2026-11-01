@@ -74,6 +74,7 @@
         owner: "{{ user_name }}"
         group: "{{ user_name }}"
         mode: 0755
+      become: true
       loop:
         - "{{ user_home }}/bin"
         - "{{ user_home }}/.vim/colors"
@@ -89,6 +90,7 @@
         group: "{{ user_name }}"
         mode: 0644
         backup: true
+      become: true
       loop:
         - { src: '.zshrc', dest: '.zshrc' }
         - { src: '.aliases', dest: '.aliases' }
@@ -99,6 +101,7 @@
       ansible.builtin.user:
         name: "{{ user_name }}"
         shell: /bin/zsh
+      become: true
  
     # --------------------------------------------------------------------------------
     # 4. VIM CONFIGS
@@ -111,6 +114,7 @@
         group: "{{ user_name }}"
         mode: 0644
         backup: true
+      become: true
       loop:
         - { src: '.vimrc', dest: '.vimrc' }
         - { src: 'colors/vividchalk.vim', dest: '.vim/colors/vividchalk.vim' }
@@ -126,6 +130,7 @@
         group: "{{ user_name }}"
         mode: 0644
         backup: true
+      become: true
 
     - name: Deploy custom executables to ~/bin
       ansible.builtin.copy:
@@ -135,6 +140,7 @@
         group: "{{ user_name }}"
         mode: 0755
         backup: true
+      become: true
       loop:
         - { src: 'alphamux.sh', dest: 'alphamux.sh' }
         - { src: 'winmux.sh', dest: 'winmux.sh' }
@@ -150,3 +156,4 @@
         group: "{{ user_name }}"
         mode: 0644
         backup: true
+      become: true
