@@ -9,7 +9,7 @@
   vars:
     user_name: "ccianos"
     user_home: "/home/{{ user_name }}"
-    repo_src: "{{ playbook_dir }}"
+    repo_src: "{{ playbook_dir | dirname }}"
 
     required_packages:
       - zsh
