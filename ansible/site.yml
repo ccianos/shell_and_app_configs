@@ -21,11 +21,13 @@
     - name: Reload sysctl
       ansible.builtin.command:
         cmd: sysctl --system
+      become: true
       listen: "trigger sysctl reload"
 
     - name: Update initramfs
       ansible.builtin.command:
         cmd: update-initramfs -u
+      become: true
       listen: "trigger initramfs update"
 
   tasks:
