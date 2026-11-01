@@ -137,6 +137,8 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 
+autoload -U compinit && compinit
+autoload -U +X bashcompinit && bashcompinit
 
 if test -f "${HOME}/.aliases"; then
     source "${HOME}/.aliases"
@@ -152,8 +154,6 @@ fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
-
-autoload -U compinit && compinit
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/ccianos/.sdkman"
