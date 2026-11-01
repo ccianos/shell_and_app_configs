@@ -141,6 +141,7 @@
     # 5. APP CONFIGS
     # --------------------------------------------------------------------------------
     - name: Deploy AntiMicroX controller profile
+      ansible.builtin.copy:
         src: "{{ repo_src }}/antimicrox/xbox_cntrl_config.gamecontroller.amgp"
         dest: "{{ user_home }}/xbox_cntrl_config.gamecontroller.amgp"
         owner: "{{ user_name }}"
