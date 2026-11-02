@@ -15,6 +15,13 @@
       - zsh
       - vim
       - tmux
+      - git
+      - curl
+      - bash-completion
+      - fortune-mod
+      - fortunes
+      - cowsay
+      - golang-go
       - initramfs-tools
 
   handlers:
