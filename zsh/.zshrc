@@ -111,6 +111,8 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+setopt extendedglob
+setopt nonomatch
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
