@@ -164,3 +164,37 @@
         mode: 0644
         backup: true
       become: true
+
+    # --------------------------------------------------------------------------------
+    # 6. OMZ & EXTENSIONS
+    # --------------------------------------------------------------------------------
+    - name: Clone Omz repo
+      ansible.builtin.git:
+        repo: "https://github.com/ohmyzsh/ohmyzsh.git"
+        dest: "{{ user_home }}/.oh-my-zsh"
+        depth: 1
+        update: false
+      become: false
+
+    - name: Clone p10k repo
+      ansible.builtin.git:
+        repo: "https://github.com/romkatv/powerlevel10k.git"
+        dest: "{{ user_home }}/.oh-my-zsh/custom/themes/powerlevel10k"
+        depth: 1
+        update: false
+      become: false
+
+    - name: Clone custom Omz plugins
+      ansible.builtin.git:
+        repo: "{{ item.repo }}"
+        dest: "{{ user_home }}/.oh-my-zsh/custom/plugins/{{ item.name }}"
+        depth: 1
+        update: false
+      loop:
+        - name: zsh-autosuggestions
+          repo: "https://github.com/zsh-users/zsh-autosuggestions.git"
+        - name: zsh-syntax-highlighting
+          repo: "https://github.com/zsh-users/zsh-syntax-highlighting.git"
+        - name: zsh-completions
+          repo: "https://github.com/zsh-users/zsh-completions.git"
+      become: false
