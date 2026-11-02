@@ -198,3 +198,23 @@
         - name: zsh-completions
           repo: "https://github.com/zsh-users/zsh-completions.git"
       become: false
+
+    # --------------------------------------------------------------------------------
+    # 7. DEIN VIM PLUGIN MANAGER
+    # --------------------------------------------------------------------------------
+    - name: Ensure Dein.vim dir sructure exists
+      ansible.builtin.file:
+        path: "{{ user_home }}/.cache/dein/repos/github.com/Shougo"
+        state: directory
+        owner: "{{ user_name }}"
+        group: "{{ user_name }}"
+        mode: 0755
+      become: true
+
+    - name: Clone Dein.vim
+      ansible.builtin.git:
+        repo: "https://github.com/Shougo/dein.vim.git"
+        dest: "{{ user_home }}/.cache/dein/repos/github.com/Shougo/dein.vim"
+        depth: 1
+        update: false
+      become: false
