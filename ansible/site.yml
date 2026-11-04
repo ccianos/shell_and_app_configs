@@ -98,6 +98,12 @@
        update_cache: true
      become: true
 
+    - name: Ensure node.js lts is installed
+      ansible.builtin.apt:
+        name: nodejs
+        state: present
+      become: true
+
     # --------------------------------------------------------------------------------
     # 2. USER ENV & DIR STRUCT
     # --------------------------------------------------------------------------------
