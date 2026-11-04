@@ -10,6 +10,7 @@
     user_name: "ccianos"
     user_home: "/home/{{ user_name }}"
     repo_src: "{{ playbook_dir | dirname }}"
+    node_lts_version: "26"
 
     required_packages:
       - zsh
