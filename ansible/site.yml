@@ -114,7 +114,7 @@
     - name: Install instant-markdown-d globally via npm
       ansible.builtin.command:
         cmd: npm install -g instant-markdown-d
-        when: instant_markdown_check.rc != 0
+      when: instant_markdown_check.rc != 0
       become: true
 
     # --------------------------------------------------------------------------------
