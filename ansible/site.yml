@@ -104,6 +104,13 @@
         state: present
       become: true
 
+    - name: Check if instant-markdown-d is installed
+      ansible.builtin.command:
+        cmd: which instant-markdown-d
+      register: instant_markdown_check
+      changed_when: false
+      failed_when: false
+
     # --------------------------------------------------------------------------------
     # 2. USER ENV & DIR STRUCT
     # --------------------------------------------------------------------------------
