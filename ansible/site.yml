@@ -84,7 +84,7 @@
     - name: Download gpg pubkey from NodeSource
       ansible.builtin.get_url:
         url: https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key
-        dest: /ect/apt/keyrings/nodesource.asc
+        dest: /etc/apt/keyrings/nodesource.asc
         owner: root
         group: root
         mode: 0644
