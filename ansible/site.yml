@@ -72,6 +72,15 @@
       become: true
       notify: "trigger initramfs update"
 
+    -name: Check if APT keyrings dir exists
+     ansible.builtin.file:
+       path: /etc/apt/keyrings
+       state: directory
+       owner: root
+       group: root
+       mode: 0755
+     become: true
+
     # --------------------------------------------------------------------------------
     # 2. USER ENV & DIR STRUCT
     # --------------------------------------------------------------------------------
