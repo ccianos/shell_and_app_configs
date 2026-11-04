@@ -10,7 +10,7 @@
     user_name: "ccianos"
     user_home: "/home/{{ user_name }}"
     repo_src: "{{ playbook_dir | dirname }}"
-    node_lts_version: "26"
+    nodejs_lts_version: "26"
 
     required_packages:
       - zsh
@@ -88,6 +88,14 @@
        owner: root
        group: root
        mode: 0644
+     become: true
+
+    -name: Add NodeSource repo with pinned signature
+     ansible.builtin.apt_repository:
+       repo: "deb [signed-by=/etc/apt/keyrings/nodesource.asc] https://deb.nodesource.com/node_{{ nodejs_lts_version }}.x nodistro main"
+       state: present
+       filename: nodesource
+       update_cache: true
      become: true
 
     # --------------------------------------------------------------------------------
